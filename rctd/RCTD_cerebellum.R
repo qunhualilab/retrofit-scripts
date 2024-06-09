@@ -28,4 +28,4 @@ myRCTD <- create.RCTD(puck, reference, max_cores = 4,
 full <- run.RCTD(myRCTD, doublet_mode = 'full') 
 results <- full@results
 normalized_weights <- normalize_weights(results$weights)
-H_mod=t(normalized_weights)
+H_mod=t(normalized_weights) # estimated proportions for cell types
