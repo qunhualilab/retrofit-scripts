@@ -23,3 +23,5 @@ mod <- fitLDA(counts[rowSums(counts)>0,],
               plot=TRUE, verbose=TRUE)
 mod20 <- optimalModel(models = mod, opt = 20)
 res20 <- getBetaTheta(mod30, betaScale = 1000)
+rmProp <- res20$theta # estimated proportions for cell types
+rmGexp <- res20$beta # estimated gene expression
