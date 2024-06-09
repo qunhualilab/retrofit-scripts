@@ -12,8 +12,8 @@ Source: https://singlecell.broadinstitute.org/single_cell/study/SCP354/slide-seq
 - Cerebellum_X.csv: Mouse brain ST tissue produced using Slide-seq platform.
 - Cerebellum_counts.tsv: Mouse brain ST tissue produced using Slide-seq platform.
 - Cerebellum_coords.csv: Coordinates of the spots for the Mouse brain ST tissue.
-- Cerebellum_sc_counts.csv: Single-cell RNA-seq for Mouse brain tissue.
-- Cerebellum_sc_label.csv: Cell type annotation for single cells in scRNA-seq data.
+- CerebellumPuck_sc_count.tsv: Single-cell RNA-seq for Mouse brain tissue.
+- CerebellumPuck_sc_label.tsv: Cell type annotation for single cells in scRNA-seq data.
 - Cerebellum_W_K=10.csv: Average gene expression profiles using mouse brain single-cell data.
   
 Human Colon Study:
