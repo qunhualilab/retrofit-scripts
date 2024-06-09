@@ -4,7 +4,7 @@ library(DescTools)
 library(corrplot)
 marker <- "MouseBrain_pseudomarkers_new.csv"
 df=read.csv(marker, row.names = 1)
-loc <- "/Cerebellum_coords.csv"
+loc <- "Cerebellum_coords.csv"
 location <- read.csv(file = loc,row.names = 1)
 row.names(location) <- gsub("-",".",row.names(location))
 colnames(location)[1:2] <- c("x", "y")    
