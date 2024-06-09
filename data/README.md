@@ -7,6 +7,7 @@ Source: https://singlecell.broadinstitute.org/single_cell/study/SCP354/slide-seq
 - Cerebellum_W_K=10.csv: Average gene expression profiles using mouse brain single-cell data.
 - Cerebellum_sc_countK=10.tsv: Single-cell RNA-seq data as reference for reference-based methods.
 - Cerebellum_sc_countK=10.tsv: Cell type annotation for single cells in scRNA-seq data.
+- BeadLocationsForR.csv: X and Y coordinates for spots in ST data
 
 Mouse Brain Study:
 Source: https://singlecell.broadinstitute.org/single_cell/study/SCP354/slide-seq-study#study-summary
