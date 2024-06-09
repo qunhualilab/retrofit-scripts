@@ -85,7 +85,8 @@ proportion = adata_vis.obsm['means_cell_abundance_w_sf']
 proportion = proportion.div(proportion.sum(axis=1), axis=0)
 for i in proportion.columns:
     proportion.columns=proportion.columns.str.replace(i, i.split("_")[4])
-proportion.index=adata_vis.obs['barcode']
+proportion.index=adata_vis.obs['barcode'] 
+proportion # estimated proportions for cell types
 
 
 
