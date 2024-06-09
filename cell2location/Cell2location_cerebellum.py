@@ -1,12 +1,3 @@
-import os
-import psutil
-
-process = psutil.Process(os.getpid())
-base_memory_usage = process.memory_info().rss
-
-from datetime import datetime
-start_time = datetime.now()
-##################################################
 import pandas as pd
 import anndata
 import sys
@@ -17,8 +8,8 @@ import matplotlib as mpl
 import cell2location
 from matplotlib import rcParams
 # scRNA-seq reference data
-scsim = "/storage/group/qul12/default/retrofit/Mouse/CerebellumPuck_sc_count.tsv"
-scsimlabel = "/storage/group/qul12/default/retrofit/Mouse/CerebellumPuck_sc_label.tsv"
+scsim = "CerebellumPuck_sc_count.tsv"
+scsimlabel = "CerebellumPuck_sc_label.tsv"
 adata = anndata.read_csv(scsim, delimiter='\t')
 obs = pd.read_csv(scsimlabel, delimiter='\t')
 adata.obs = obs
@@ -52,11 +43,11 @@ else:
                                     for i in adata_ref.uns['mod']['factor_names']]].copy()
 inf_aver.columns = adata_ref.uns['mod']['factor_names']
 ######load ST sim data
-sim = pd.read_csv("/storage/group/qul12/default/retrofit/Mouse/CerebellumPuck_counts.csv",
+sim = pd.read_csv("CerebellumPuck_counts.csv",
                    index_col=0,
                    delimiter=',')
 adata_vis = sc.AnnData(sim.T)
-location =  pd.read_csv("/storage/group/qul12/default/retrofit/Mouse/Cerebellum_coords.csv",
+location =  pd.read_csv("Cerebellum_coords.csv",
                         delimiter=',')
 adata_vis.obs = location
 # find shared genes and subset both anndata and reference signatures
@@ -96,11 +87,5 @@ for i in proportion.columns:
     proportion.columns=proportion.columns.str.replace(i, i.split("_")[4])
 proportion.index=adata_vis.obs['barcode']
 
-#################################################
-memory_usage = process.memory_info().rss
-loop_memory_usage = memory_usage - base_memory_usage
-print(loop_memory_usage/1024**2)
 
-end_time = datetime.now()
-print((end_time - start_time).total_seconds()/60,"min")
 
