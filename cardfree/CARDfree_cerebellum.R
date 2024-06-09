@@ -2,8 +2,7 @@ library(CARD)
 library(retrofit)
 library(DescTools)
 library(corrplot)
-marker <- "MouseBrain_pseudomarkers_new.csv"
-df=read.csv(marker, row.names = 1)
+##load ST and location files
 loc <- "Cerebellum_coords.csv"
 location <- read.csv(file = loc,row.names = 1)
 row.names(location) <- gsub("-",".",row.names(location))
@@ -12,6 +11,8 @@ input_x = read.csv("Cerebellum_counts.csv")
 rownames(input_x) = input_x[,1]
 input_x = as.matrix(input_x[,-1])
 # Create marker gene list: od gene + sc expression
+marker <- "MouseBrain_pseudomarkers_new.csv"
+df=read.csv(marker, row.names = 1)
 gt_W0 = read.csv("Cerebellum_all_W.csv")
 rownames(gt_W0) = gt_W0[,1]
 gt_W0 = as.matrix(gt_W0[,-1])# [,c(1:5)]
