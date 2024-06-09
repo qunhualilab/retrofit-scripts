@@ -5,6 +5,8 @@ Source: https://singlecell.broadinstitute.org/single_cell/study/SCP354/slide-seq
 
 - N=10,M=3_loc_X.csv: Simulated data with 10 cells and up to 3 cell types per spot.
 - Cerebellum_W_K=10.csv: Average gene expression profiles using mouse brain single-cell data.
+- Cerebellum_sc_countK=10.tsv: Single-cell RNA-seq data as reference for reference-based methods.
+- Cerebellum_sc_countK=10.tsv: Cell type annotation for single cells in scRNA-seq data.
 
 Mouse Brain Study:
 Source: https://singlecell.broadinstitute.org/single_cell/study/SCP354/slide-seq-study#study-summary
