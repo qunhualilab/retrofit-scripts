@@ -11,10 +11,19 @@ input_x = read.csv("A3_counts.csv")
 rownames(input_x) = input_x[,1]
 input_x = as.matrix(input_x[,-1])
 # Create marker gene list: od gene + sc expression
+marker <- "Colon_Markers.csv"
+df=read.csv(marker, row.names = 1)
+df$Celltype[which(df$Celltype=="Endothelium")]<- "Endothelial"
+df$Celltype[which(df$Celltype=="Fibroblasts")]<- "Fibroblast"
+df$Celltype[which(df$Celltype=="Myo.Meso")]<- "MyoFB/Meso"
+df$Celltype[which(df$Celltype=="Pericytes")]<- "Pericyte"
+
 gt_W0 = read.csv("Intestine_W_12pcw.csv")
 rownames(gt_W0) = gt_W0[,1]
-gt_W0 = as.matrix(gt_W0[,-1])
-de_gene = read.table("od_gene_ColonA3.txt")
+gt_W0 = as.matrix(gt_W0[,-1])# [,c(1:5)]
+
+de_gene = read.table("od_gene_ColonA3.txt") 
+de_gene_m = c(de_gene[,1],df$Gene)
 sub_W = gt_W0[rownames(gt_W0) %in% de_gene_m,]
 cell_type = apply(sub_W, 1, which.max)
 
