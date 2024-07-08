@@ -7,4 +7,4 @@ This repository provides the scripts for running [RETROFIT](https://bioconductor
 > *bioRxiv* (2023) <https://doi.org/10.1101/2023.06.07.544126>.
 
 If you find any part of this repository useful for your work, please kindly cite the research article above.
-Correspondence should be addressed to X.Z. (`xiangzhu[at]psu.edu`) and Q.L. (`qunhua.li[at]psu.edu`).
+Correspondence should be addressed to Xiang Zhu (`xiangzhu[at]psu.edu`) and Qunhua Li (`qunhua.li[at]psu.edu`).
