@@ -1,49 +1,46 @@
 delta_metric <- function(cor_matrix){
-
-  # cor_matrix contains correlations for different cell types (rows) at different metric settings (columns)
-  # For example:
-  #                  0   0.01   0.05    
-  # Endothelium  0.541  0.581  0.167  
-  # Epithelial   0.756  0.725  0.684 
-  # Muscle       0.881  0.869  0.780
-  # 
-  # Here columns are different lambda settings and rows are different cell types.
+  
+  #' RETROFIT delta metric 
+  #' 
+  #' @description Receiving the input with correlation matrix for different cell types (rows) at different parameter settings (columns), 
+  #'  the function returns the delta metric.
+  #'
+  #' @param cor_matrix matrix or array with dimension (CellTypes, Parameters). 
+  #' For example: cor_matrix =
+  #'                  0   0.01   0.05    
+  #' Endothelium  0.541  0.581  0.167  
+  #' Epithelial   0.756  0.725  0.684 
+  #' Muscle       0.881  0.869  0.780
+  #' 
+  #' Here, there are 3 cell types and 3 different parameter settings. 
+  #' The values of the matrix are the correlation between the estimated gene expression profile via RETROFIT,
+  #' and the corresponding cell-type specific marker gene expressions at different parameter settings.
+  #'
+  #' @return A dataframe that contains
+  #' \itemize{
+  #' \item parameters: different parameter settings provided in the input
+  #' \item delta:      delta metric for each parameter setting
+  #' }
+  #' 
+  #'@seealso Algorithm 1 in paper
+  #'@export
   
   nc = ncol(cor_matrix)
   nr = nrow(cor_matrix)
   
-  delta1 = matrix(NA, nrow= nr, ncol=nc)
-  delta2 = matrix(NA, nrow= nr, ncol=nc)
-  celltype_means1 = as.numeric(rowMeans(cor_matrix)) # regular mean
+  delta = matrix(NA, nrow= nr, ncol=nc)
+  celltype_means = as.numeric(rowMeans(cor_matrix)) 
   
   for (i in 1:nr){
-    celltype_means2 = mean(sort(as.numeric(cor_matrix[i,]))[2:(nc-1)]) # winsorized mean
     for(j in 1:nc){
-      delta1[i,j] = cor_matrix[i,j] - celltype_means1[i]
-      delta2[i,j] = cor_matrix[i,j] - celltype_means2
+      delta[i,j] = cor_matrix[i,j] - celltype_means[i]
     }
   }
   
-  delta_lamda1 = colMeans(delta1) 
-  delta_lamda2 = colMeans(delta2)
-  delta_lamda3 = rep(NA, length = length(delta_lamda1))
-  delta_lamda4 = rep(NA, length = length(delta_lamda1))
-  for(i in 1:ncol(delta1)){
-    temp = delta1[,i]
-    temp[temp>0.25]=0.25
-    temp[temp<-0.25]=-0.25
-    delta_lamda3[i]=mean(temp)
-    temp = delta2[,i]
-    temp[temp>0.25]=0.25
-    temp[temp<-0.25]=-0.25
-    delta_lamda4[i]=mean(temp)
-  }
+  delta_param = colMeans(delta) 
   
-  results = data.frame(metrics = colnames(cor_matrix),
-                       delta = round(delta_lamda1,digits= 4),
-                       delta_robust = round(delta_lamda2, digits = 4),
-                       delta_winsorized = round(delta_lamda3,digits= 4),
-                       delta_robust_winsorized = round(delta_lamda4,digits= 4))
+  results = data.frame(parameters = colnames(cor_matrix),
+                       delta = round(delta_param,digits= 4))
   
   return(results)
 }
